@@ -1,0 +1,103 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file '/home/wuyuanyi/nnProject/detectron2/projects/nncrystal/ui/components/forms/annotator.ui',
+# licensing of '/home/wuyuanyi/nnProject/detectron2/projects/nncrystal/ui/components/forms/annotator.ui' applies.
+#
+# Created: Mon Dec 16 03:04:59 2019
+#      by: pyside2-uic  running on PySide2 5.13.2
+#
+# WARNING! All changes made in this file will be lost!
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+class Ui_Dialog(object):
+    def setupUi(self, Dialog):
+        Dialog.setObjectName("Dialog")
+        Dialog.resize(740, 578)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
+        Dialog.setSizePolicy(sizePolicy)
+        Dialog.setMinimumSize(QtCore.QSize(0, 1))
+        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.scrollArea = QtWidgets.QScrollArea(Dialog)
+        self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.canvas_widget = AnnotatorCanvas()
+        self.canvas_widget.setGeometry(QtCore.QRect(0, 0, 706, 324))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.canvas_widget.sizePolicy().hasHeightForWidth())
+        self.canvas_widget.setSizePolicy(sizePolicy)
+        self.canvas_widget.setObjectName("canvas_widget")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.canvas_widget)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.scrollArea.setWidget(self.canvas_widget)
+        self.verticalLayout.addWidget(self.scrollArea)
+        self.groupBox_3 = QtWidgets.QGroupBox(Dialog)
+        self.groupBox_3.setObjectName("groupBox_3")
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.groupBox_3)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.pushButton = QtWidgets.QPushButton(self.groupBox_3)
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout_3.addWidget(self.pushButton)
+        self.verticalLayout.addWidget(self.groupBox_3)
+        self.groupBox = QtWidgets.QGroupBox(Dialog)
+        self.groupBox.setObjectName("groupBox")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.groupBox)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.label = QtWidgets.QLabel(self.groupBox)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
+        self.label.setObjectName("label")
+        self.horizontalLayout.addWidget(self.label)
+        self.total_count = QtWidgets.QLabel(self.groupBox)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.total_count.sizePolicy().hasHeightForWidth())
+        self.total_count.setSizePolicy(sizePolicy)
+        self.total_count.setText("")
+        self.total_count.setObjectName("total_count")
+        self.horizontalLayout.addWidget(self.total_count)
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem)
+        self.verticalLayout.addWidget(self.groupBox)
+        self.groupBox_2 = QtWidgets.QGroupBox(Dialog)
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.groupBox_2)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.category = QtWidgets.QComboBox(self.groupBox_2)
+        self.category.setObjectName("category")
+        self.horizontalLayout_2.addWidget(self.category)
+        self.verticalLayout.addWidget(self.groupBox_2)
+        self.action_save = QtWidgets.QAction(Dialog)
+        self.action_save.setObjectName("action_save")
+        self.action_exit = QtWidgets.QAction(Dialog)
+        self.action_exit.setObjectName("action_exit")
+        self.action_toggle_hide = QtWidgets.QAction(Dialog)
+        self.action_toggle_hide.setObjectName("action_toggle_hide")
+
+        self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+    def retranslateUi(self, Dialog):
+        Dialog.setWindowTitle(QtWidgets.QApplication.translate("Dialog", "Dialog", None, -1))
+        self.groupBox_3.setTitle(QtWidgets.QApplication.translate("Dialog", "Actions", None, -1))
+        self.pushButton.setText(QtWidgets.QApplication.translate("Dialog", "PushButton", None, -1))
+        self.groupBox.setTitle(QtWidgets.QApplication.translate("Dialog", "Status", None, -1))
+        self.label.setText(QtWidgets.QApplication.translate("Dialog", "Total annotation count:", None, -1))
+        self.groupBox_2.setTitle(QtWidgets.QApplication.translate("Dialog", "Category", None, -1))
+        self.action_save.setText(QtWidgets.QApplication.translate("Dialog", "&Save", None, -1))
+        self.action_exit.setText(QtWidgets.QApplication.translate("Dialog", "&Exit", None, -1))
+        self.action_toggle_hide.setText(QtWidgets.QApplication.translate("Dialog", "&Toggle hide", None, -1))
+
+from components.annotator_canvas import AnnotatorCanvas
