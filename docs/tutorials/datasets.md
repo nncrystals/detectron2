@@ -50,8 +50,10 @@ will load the image from "file_name" and load "sem_seg" from "sem_seg_file_name"
 + `height`, `width`: integer. The shape of image.
 + `image_id` (str or int): a unique id that identifies this image. Used
 	during evaluation to identify the images, but a dataset may use it for different purposes.
-+ `annotations` (list[dict]): the per-instance annotations of every
-  instance in this image. Each annotation dict may contain:
++ `annotations` (list[dict]): each dict corresponds to annotations of one instance
+  in this image. Images with empty `annotations` will by default be removed from training,
+	but can be included using `DATALOADER.FILTER_EMPTY_ANNOTATIONS`.
+	Each dict may contain the following keys:
   + `bbox` (list[float]): list of 4 numbers representing the bounding box of the instance.
   + `bbox_mode` (int): the format of bbox.
     It must be a member of
@@ -64,7 +66,9 @@ will load the image from "file_name" and load "sem_seg" from "sem_seg_file_name"
       of the object. Each `list[float]` is one simple polygon in the format of `[x1, y1, ..., xn, yn]`.
       The Xs and Ys are either relative coordinates in [0, 1], or absolute coordinates,
       depend on whether "bbox_mode" is relative.
-    + If `dict`, it represents the per-pixel segmentation mask in COCO's RLE format.
+    + If `dict`, it represents the per-pixel segmentation mask in COCO's RLE format. The dict should have
+			keys "size" and "counts". You can convert a uint8 segmentation mask of 0s and 1s into
+			RLE format by `pycocotools.mask.encode(np.asarray(mask, order="F"))`.
   + `keypoints` (list[float]): in the format of [x1, y1, v1,..., xn, yn, vn].
     v[i] means the [visibility](http://cocodataset.org/#format-data) of this keypoint.
     `n` must be equal to the number of keypoint categories.
@@ -76,6 +80,9 @@ will load the image from "file_name" and load "sem_seg" from "sem_seg_file_name"
     pixel indices to floating point coordinates.
   + `iscrowd`: 0 or 1. Whether this instance is labeled as COCO's "crowd
     region". Don't include this field if you don't know what it means.
+
+The following keys are used by Fast R-CNN style training, which is rare today.
+
 + `proposal_boxes` (array): 2D numpy array with shape (K, 4) representing K precomputed proposal boxes for this image.
 + `proposal_objectness_logits` (array): numpy array with shape (K, ), which corresponds to the objectness
   logits of proposals in 'proposal_boxes'.
@@ -124,6 +131,9 @@ unavailable to you:
   A list of names for each instance/thing category.
   If you load a COCO format dataset, it will be automatically set by the function `load_coco_json`.
 
+* `thing_colors` (list[tuple(r, g, b)]): Pre-defined color (in [0, 255]) for each thing category.
+  Used for visualization. If not given, random colors are used.
+
 * `stuff_classes` (list[str]): Used by semantic and panoptic segmentation tasks.
   A list of names for each stuff category.
 
@@ -156,7 +166,7 @@ Some additional metadata that are specific to the evaluation of certain datasets
    You can just provide the [DatasetEvaluator](../modules/evaluation.html#detectron2.evaluation.DatasetEvaluator)
    for your dataset directly in your main script.
 
-NOTE: For background on the difference between "thing" and "stuff" categories, see
+NOTE: For background on the concept of "thing" and "stuff", see
 [On Seeing Stuff: The Perception of Materials by Humans and Machines](http://persci.mit.edu/pub_pdfs/adelson_spie_01.pdf).
 In detectron2, the term "thing" is used for instance-level tasks,
 and "stuff" is used for semantic segmentation tasks.
