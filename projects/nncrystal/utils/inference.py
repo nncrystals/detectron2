@@ -9,7 +9,7 @@ from detectron2.engine import DefaultPredictor
 from torch.utils.data import Dataset
 from torch.utils.data.dataloader import DataLoader
 
-from utils import msgpack_data_index, load_images_entries
+from utils.msgpack_file_loader import msgpack_data_index, load_images_entries
 
 
 class BatchPredictor(DefaultPredictor):

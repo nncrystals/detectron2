@@ -2,7 +2,7 @@ import io
 
 import numpy as np
 from matplotlib import pyplot as plt
-from utils import msgpack_data_index, load_images_entries
+from utils.msgpack_file_loader import msgpack_data_index, load_images_entries
 from PIL import Image
 
 

@@ -19,7 +19,11 @@ if __name__ == '__main__':
 
     for job_id in args.job_id:
         job = api.get_job(job_id).json()
-        task_id = job["task_id"]
+        try:
+            task_id = job["task_id"]
+        except:
+            raise RuntimeError(job)
+            
         data = api.export_data(task_id, format="CVAT XML 1.1 for images").content
         root = ElementTree.fromstring(data)
         result = cvat_xml_to_coco(root, ignore_crowded=True,
